@@ -1,0 +1,480 @@
+/* ===========================
+   RESET & BASE STYLES
+   =========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ===========================
+   HEADER SECTION
+   =========================== */
+header {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    animation: fadeIn 0.8s ease-in;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 16px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    background: #4ade80;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+/* ===========================
+   STATISTICS CARDS
+   =========================== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: slideUp 0.6s ease-out;
+    position: relative;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.stat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.icon-blue { 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+}
+
+.icon-green { 
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); 
+}
+
+.icon-orange { 
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); 
+}
+
+.icon-purple { 
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); 
+}
+
+.stat-trend {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
+.trend-up {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.trend-down {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.stat-value {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #1f2937;
+    margin: 10px 0;
+}
+
+.stat-label {
+    color: #6b7280;
+    font-size: 0.9em;
+}
+
+/* Today's-date badge */
+.today-date {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    font-size: 0.85rem;
+    color: #6b7280;
+    background: rgba(0,0,0,0.04);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    backdrop-filter: blur(2px);
+}
+
+/* Add a little top padding so today's date doesn't overlap content */
+.stat-card { padding-top: 36px; }
+
+/* ===========================
+   CHARTS SECTION
+   =========================== */
+.charts-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.chart-container {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: slideUp 0.8s ease-out;
+}
+
+.chart-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ===========================
+   TABLE SECTION
+   =========================== */
+.table-container {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    overflow-x: auto;
+    animation: slideUp 1s ease-out;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+tbody tr {
+    transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+    background: #f9fafb;
+}
+
+.amount {
+    font-weight: bold;
+    color: #16a34a;
+}
+
+/* ===========================
+   CATEGORY BADGES
+   =========================== */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+.badge-education { 
+    background: #dbeafe; 
+    color: #1e40af; 
+}
+
+.badge-healthcare { 
+    background: #dcfce7; 
+    color: #15803d; 
+}
+
+.badge-environment { 
+    background: #fef3c7; 
+    color: #a16207; 
+}
+
+.badge-community { 
+    background: #e9d5ff; 
+    color: #6b21a8; 
+}
+
+/* ===========================
+   NOTIFICATION ALERT
+   =========================== */
+.new-donation-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    transform: translateX(400px);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    min-width: 300px;
+}
+
+.new-donation-alert.show {
+    transform: translateX(0);
+}
+
+.alert-header {
+    font-weight: bold;
+    color: #16a34a;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ===========================
+   ANIMATIONS
+   =========================== */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(-20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(30px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        opacity: 1; 
+    }
+    50% { 
+        opacity: 0.5; 
+    }
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+@media (max-width: 968px) {
+    .charts-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+/* ===========================
+   === ADDED ADDONS (controls, live dot, test-mode, small UX)
+   =========================== */
+
+/* Header extras: live indicator + test toggle container */
+.header-extra {
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  align-items:center;
+  margin-top:12px;
+  flex-wrap:wrap;
+}
+
+/* Live blinking dot */
+.live-indicator {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 10px;
+  border-radius:999px;
+  background: rgba(255,255,255,0.06);
+  color: #e6fffa;
+  font-weight:700;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+.live-dot {
+  width:10px;
+  height:10px;
+  background: #22c55e;
+  border-radius:50%;
+  box-shadow: 0 0 8px rgba(34,197,94,0.9);
+  animation: blinkGreen 1.2s infinite;
+}
+.live-text { color:#d1fae5; font-weight:600; font-size:0.95rem; }
+
+@keyframes blinkGreen {
+  0% { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 6px rgba(34,197,94,0.9)); }
+  50% { opacity: 0.35; transform: scale(0.85); filter: none; }
+  100% { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 6px rgba(34,197,94,0.9)); }
+}
+
+/* Test mode label and checkbox */
+.test-mode-label {
+  display:inline-flex;
+  gap:8px;
+  align-items:center;
+  color: #f8fafc;
+  font-weight:600;
+  padding:6px 10px;
+  border-radius:10px;
+  background: rgba(255,255,255,0.02);
+}
+.test-mode-label input[type="checkbox"] { width:16px; height:16px; accent-color: #10b981; }
+
+/* Controls styling (preset, date inputs, apply button, slider) */
+.controls {
+  margin-bottom: 18px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+.controls .control-row { display:flex; gap:14px; align-items:center; flex-wrap:wrap; justify-content:center; }
+
+.control-inline { color: #f8fafc; font-weight:700; display:flex; gap:8px; align-items:center; }
+
+/* inputs & selects */
+.control-input {
+  padding:8px 10px;
+  border-radius:8px;
+  border: none;
+  outline: none;
+  background: white;
+  color: #111827;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+  font-weight:700;
+  font-size:0.95rem;
+}
+
+/* date inputs slightly narrower for compactness */
+input[type="date"].control-input { width:150px; padding:8px 10px; }
+
+/* apply button */
+.control-button {
+  padding:9px 14px;
+  border-radius:10px;
+  border:none;
+  background:#10b981;
+  color:white;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow: 0 8px 22px rgba(16,185,129,0.16);
+  transition: transform .14s ease, box-shadow .14s ease;
+}
+.control-button:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(16,185,129,0.2); }
+
+/* slider area */
+.slider-label { display:flex; gap:10px; align-items:center; color:white; font-weight:700; }
+#days-range { vertical-align: middle; width:170px; }
+
+/* small value badge for slider */
+#days-range-value {
+  display:inline-block;
+  min-width:34px;
+  text-align:center;
+  background: rgba(255,255,255,0.06);
+  padding:6px 8px;
+  border-radius:8px;
+  color:white;
+  font-weight:800;
+}
+
+/* subtle highlight for Today's stat-card */
+.stat-card.today-highlight {
+  border: 1px solid rgba(34,197,94,0.12);
+  box-shadow: 0 14px 42px rgba(16,185,129,0.06);
+}
+
+/* badge tweaks to match lighter control inputs */
+.badge { font-size:0.82rem; padding:3px 10px; }
+
+/* make table responsive and compact on small screens */
+@media (max-width: 720px) {
+  .controls .control-row { justify-content: flex-start; gap:8px; }
+  input[type="date"].control-input { width:130px; }
+  #days-range { width:120px; }
+}
+
+/* small print under controls if needed */
+.controls .hint {
+  color: rgba(255,255,255,0.75);
+  font-size: 0.85rem;
+  margin-top:6px;
+  text-align:center;
+}
+
+/* end of addons */

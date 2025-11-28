@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Donation Tracker Dashboard</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎯 Real-Time Donation Tracker</h1>
+      <p>Live monitoring of donations and donor activity</p>
+
+      <!-- Live indicator (kept) -->
+      <div class="header-extra">
+        <div class="live-indicator" title="Live updates">
+          <span class="live-dot"></span>
+          <span class="live-text">Live</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- STAT CARDS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-icon icon-blue">💰</div>
+          <span class="stat-trend trend-up" id="total-trend">+0%</span>
+        </div>
+        <div class="stat-value" id="total-donations">$0</div>
+        <div class="stat-label">Total Donations</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-icon icon-green">👥</div>
+          <span class="stat-trend trend-up" id="donor-trend">+0</span>
+        </div>
+        <div class="stat-value" id="total-donors">0</div>
+        <div class="stat-label">Total Donors</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-icon icon-orange">📊</div>
+        </div>
+        <div class="stat-value" id="avg-donation">$0</div>
+        <div class="stat-label">Average Donation</div>
+      </div>
+
+      <div class="stat-card today-highlight" style="position:relative;">
+        <div class="stat-header">
+          <div class="stat-icon icon-purple">🕐</div>
+        </div>
+        <div id="today-date" class="today-date"></div>
+        <div class="stat-value" id="today-donations">$0</div>
+        <div class="stat-label">Today's Donations</div>
+      </div>
+    </div>
+
+    <!-- Controls for date range and presets -->
+    <div class="controls">
+      <div class="control-row">
+        <label class="control-inline">Preset:
+          <select id="preset-select" class="control-input">
+            <option value="12">Last 12 days (default)</option>
+            <option value="7">Last 7 days</option>
+            <option value="30">Last 30 days</option>
+            <option value="90">Last 90 days</option>
+            <option value="365">Last 365 days</option>
+          </select>
+        </label>
+
+        <label class="control-inline">From:
+          <input type="date" id="from-date" class="control-input"/>
+        </label>
+
+        <label class="control-inline">To:
+          <input type="date" id="to-date" class="control-input"/>
+        </label>
+
+        <button id="apply-range" class="control-button">Apply</button>
+
+        <label class="slider-label">Days to show:
+          <input id="days-range" type="range" min="3" max="365" value="12" />
+          <span id="days-range-value">12</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- CHARTS -->
+    <div class="charts-section">
+      <div class="chart-container full-width">
+        <div class="chart-title">📈 Donations Over Time</div>
+        <canvas id="trendChart"></canvas>
+      </div>
+
+      <div class="chart-container small">
+        <div class="chart-title">🎨 Category Distribution</div>
+        <canvas id="categoryChart"></canvas>
+      </div>
+    </div>
+
+    <!-- RECENT DONATIONS TABLE -->
+    <div class="table-container">
+      <div class="chart-title">📋 Recent Donations</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Donor</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Date</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody id="donations-table"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- notification -->
+  <div class="new-donation-alert" id="donation-alert"><div class="alert-header">🎉 New Donation!</div><div id="alert-content"></div></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
